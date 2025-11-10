@@ -4,26 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>form-no-js.html</title>
+
+    <link rel="stylesheet" href="css/form-no-js.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
 </head>
 <body>
+    <header>
+        <span><b>Kenneth's Portfolio</b></span>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+                <li><a href="contact.html">Contact Me</a></li>
+                <li><a href="form-no-js.html" class="active"><strong>form-no-js</strong></a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-        <form action="http://httpbin.org/post" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <br>
+        <form action="https://httpbin.org/post" method="post">
+            
+            <fieldset>
+                <legend>Contact Form w/ No JS</legend>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <br>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+    
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+    
+                <label for="comments">Comments:</label>
+                <textarea id="comments" name="comments" required></textarea>
+    
+                <input name="possible_bot" value="true" type="hidden">
+    
+                <button type="submit">Submit</button>
+            </fieldset>
 
-            <label for="comments">Comments:</label>
-            <textarea id="comments" name="comments" required></textarea>
-            <br>
-
-            <input name="possible_bot" value="true" type="hidden">
-
-            <button type="submit">Submit</button>
+            <output id="form-errors"></output>
+            <output id="form-info"></output>
         </form>
     </main>
+
+    <footer>
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://github.com/kennethkietvuong">
+                        <img src="assets/icons/github-mark.svg" alt="GitHub icon">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/kenneth-vuong-866989253/">
+                        <img src="assets/icons/LI-In-Bug.png" alt="LinkedIn icon">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <p>&copy; <span>2025</span> - <strong>Kenneth Vuong</strong></p>
+    </footer>
 </body>
 </html>
