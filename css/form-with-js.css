@@ -252,14 +252,6 @@ main {
         .flash {
             animation: flash 0.3s ease;
         }
-
-        .is-valid {
-            border-color: var(--ok) !important; box-shadow: 0 0 0 3px rgba(46,125,50,.12) !important;
-        }
-
-        .is-invalid {
-            border-color: var(--error) !important; box-shadow: 0 0 0 3px rgba(220,77,65,.12) !important; 
-        }
     }
 
     button {
@@ -278,12 +270,12 @@ main {
     }
 
     /* Disable button if form is invalid */
-    &:has(:invalid) button {
+    /* &:has(:invalid) button {
         opacity: .45;
         cursor: not-allowed;
         pointer-events: none;
         user-select: none;
-    }
+    } */
 
     &:has(:valid:not(:placeholder-shown)) button:hover {
         background: var(--button-color, #333);
