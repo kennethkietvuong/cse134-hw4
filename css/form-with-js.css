@@ -13,6 +13,11 @@
 
     --header-footer-color: #f8f8f8;
     --body-background-color: #f0f0f0;
+
+    /* JS form validation indicators */
+    --ok: green;
+    --error: red;
+    --warn: orange;
 }
 
 /* Simple reset */
@@ -239,6 +244,22 @@ main {
             outline: none;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
+
+        textarea {
+            resize: none;
+        }
+
+        .flash {
+            animation: flash 0.3s ease;
+        }
+
+        .is-valid {
+            border-color: var(--ok) !important; box-shadow: 0 0 0 3px rgba(46,125,50,.12) !important;
+        }
+
+        .is-invalid {
+            border-color: var(--error) !important; box-shadow: 0 0 0 3px rgba(220,77,65,.12) !important; 
+        }
     }
 
     button {
@@ -280,6 +301,13 @@ main {
         &:focus-visible {
             border-color: var(--accent-color, #0077cc);
             box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent-color, #0077cc) 22%, #ffffff);
+
+            /* Invalid input border (red) */
+            &:user-invalid, &:invalid:not(:focus):not(:placeholder-shown),  
+            &:invalid:focus:not(:placeholder-shown) {
+                border-color: red;
+                box-shadow: 0 0 0 3px rgba(220,77,65,0.12);
+            }
         }
         
         /* Valid input border (green) */
@@ -294,6 +322,26 @@ main {
             box-shadow: 0 0 0 3px rgba(220,77,65,0.12);
         }
     }
+
+    #form-errors, #form-info {
+        width: min(720px, 92dvw);
+        display: block;
+        min-height: 1.25rem;
+    }
+
+    #form-errors {
+        color: red;
+        margin-top: 0.25rem;
+    }
+
+    #form-info {
+        color: #555;
+        font-style: italic;
+    }
+
+    .count-valid     { color:#666; }
+    .count-warning   { color: var(--warn); font-weight:600; }
+    .count-error  { color: var(--error); font-weight:700; }
 }
 
 @media (max-width: 600px) {
@@ -338,5 +386,15 @@ main {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes flash {
+    25%, 75%, 100% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(10px);
     }
 }

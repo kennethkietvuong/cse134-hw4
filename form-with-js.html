@@ -43,20 +43,23 @@
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Name" pattern="[A-Za-z]+(?: [A-Za-z]+)?" autocomplete="name" required>
     
-                <!-- pattern="[^@\s]+@[^@\s]+\.[^@\s]+" -->
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="email@example.com" autocomplete="email" required>
+                <input type="email" id="email" name="email" placeholder="email@example.com" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" autocomplete="email" required>
     
                 <label for="comments">Comments:</label>
-                <textarea id="comments" name="comments" placeholder="Comments go here" maxlength="200" required></textarea>
+                <textarea id="comments" name="comments" placeholder="Comments go here" minlength="1" maxlength="400" rows="6" required></textarea>
     
                 <input name="possible_bot" value="true" type="hidden">
-    
+
+                <output id="form-info">
+                    <span id="commentsLength">400 characters remaining</span>
+                </output>
+
+                
                 <button type="submit">Submit</button>
             </fieldset>
-
             <output id="form-errors"></output>
-            <output id="form-info"></output>
+            <input type="hidden" name="form-errors" id="form-errors-array" value="[]">
         </form>
     </main>
 
@@ -77,5 +80,7 @@
         </nav>
         <p>&copy; <span>2025</span> - <strong>Kenneth Vuong</strong></p>
     </footer>
+
+    <script src="scripts/form-with-js.js"></script>
 </body>
 </html>
