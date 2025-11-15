@@ -35,9 +35,6 @@ function init() {
             reason,
             val
         });
-
-        // update this value at the end when the form is being submitted!!!
-        formErrorsArray.value = JSON.stringify(form_errors_array);
     }
 
     /// Constraint API Functions ///
@@ -167,17 +164,12 @@ function init() {
 
     commentsElement.addEventListener('input', updateCommentLength);
     commentsElement.addEventListener('blur', () => {
-        updateCommentLength();
-        if (!commentsElement.checkValidity()) {
-            tempMessage(commentsElement.validationMessage);
-            logError('comments', 'invalid', commentsElement.value);
-        }
+        // updateCommentLength();
+        // if (!commentsElement.checkValidity()) {
+        //     tempMessage(commentsElement.validationMessage);
+        //     logError('comments', 'invalid', commentsElement.value);
+        // }
     });
-
-    // Initialize UI states
-    // validateNameInput();
-    // validateEmailInput();
-    // updateCommentLength();
 
     // Form submission
     form.addEventListener('submit', (e) => {
