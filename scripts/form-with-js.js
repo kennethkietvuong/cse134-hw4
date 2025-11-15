@@ -69,7 +69,6 @@ function init() {
         }
     }
 
-    // something is wrong with this
     function validateEmailInput() {
         let originalEmail = emailElement.value;
 
@@ -115,12 +114,14 @@ function init() {
 
             commentsElement.classList.add('flash');
             setTimeout(() => commentsElement.classList.remove('flash'), 200);
-            return;
         }
 
         // if input goes past the limit somehow
         else if (remainingChar < 0) {
             commentsElement.setCustomValidity('Error: You have exceeded the maximum character limit.');
+
+            commentsElement.classList.add('flash');
+            setTimeout(() => commentsElement.classList.remove('flash'), 200);
         }
 
         // reset custom error message
@@ -140,58 +141,32 @@ function init() {
         }
     }
 
-    // Event Listeners
-    nameElement.addEventListener('input', validateNameInput);
-    nameElement.addEventListener('blur', () => {
-        // validateNameInput();
-        // if (!nameElement.checkValidity()) {
-        //     tempMessage(nameElement.validationMessage);
-        //     logError('name', 'invalid', nameElement.value);
-        //     // nameElement.reportValidity();
-        // }
-        // nameElement.reportValidity();
-    });
-
-    emailElement.addEventListener('input', validateEmailInput);
-    emailElement.addEventListener('blur', () => {
-        // validateEmailInput();
-        // if (!emailElement.checkValidity()) {
-        //     tempMessage(emailElement.validationMessage);
-        //     logError('email', 'invalid', emailElement.value);
-        // }
-        // emailElement.reportValidity();
-    });
-
-    commentsElement.addEventListener('input', updateCommentLength);
-    commentsElement.addEventListener('blur', () => {
-        // updateCommentLength();
-        // if (!commentsElement.checkValidity()) {
-        //     tempMessage(commentsElement.validationMessage);
-        //     logError('comments', 'invalid', commentsElement.value);
-        // }
-    });
-
-    // Form submission
-    form.addEventListener('submit', (e) => {
-        validateNameInput();
-        validateEmailInput();
-        updateCommentLength();
+    function validateForm(event) {
 
         if (!form.checkValidity()) {
-            e.preventDefault();
+            event.preventDefault();
 
-            // show first invalid message
-            let firstInvalidMessage = form.querySelector(':invalid');
-            if (firstInvalidMessage) {
-                firstInvalidMessage.focus();
-                tempMessage(firstInvalidMessage.validationMessage, 2500);
-                logError(firstInvalidMessage.name || firstInvalidMessage.id || 'unknown', 'submit-invalid', firstInvalidMessage.value);
-            }
+            tempMessage('Submission error, input field(s) are not valid.');
+            logError('form', 'invalid form submission', [nameElement.value, emailElement.value, commentsElement.value]);
+
+            validateNameInput();
+            validateEmailInput();
+            updateCommentLength();
+            
+            nameElement.reportValidity();
+            emailElement.reportValidity();
+            commentsElement.reportValidity();
 
             return;
         }
 
         formErrorsArray.value = JSON.stringify(form_errors_array);
         formInfo.textContent = 'Submitting...';
-    });
+    }
+
+    // Event Listeners
+    nameElement.addEventListener('input', validateNameInput);
+    emailElement.addEventListener('input', validateEmailInput);
+    commentsElement.addEventListener('input', updateCommentLength);
+    form.addEventListener('submit', validateForm);
 }
