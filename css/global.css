@@ -1,0 +1,29 @@
+:root {
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+
+    /* Default light mode theme */
+    --accent-color: #0077cc;
+    --accent-hover: #005fa3;
+    --text-color: #222;
+    --button-color: #333;
+    --header-footer-color: #f8f8f8;
+    --body-background-color: #f0f0f0;
+
+    --font-theme: "Montserrat", sans-serif;
+
+    --font-size-adjust-body: 0.52;
+    --font-size-adjust-heading: 0.54;
+
+    /* Dark mode theme */
+    &[data-theme="dark"] {
+        --accent-color: #4da3ff;
+        --accent-hover: #8bc2ff;
+        --text-color: #e4e7ef;
+        --button-color: #e4e7ef;
+        --header-footer-color: #090c16;
+        --body-background-color: #050810;
+
+        --font-theme: "Montserrat", sans-serif;
+    }
+}
