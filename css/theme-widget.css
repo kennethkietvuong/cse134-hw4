@@ -1,0 +1,97 @@
+@import url("global.css");
+
+theme-widget {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 999;
+    /* display: none; */
+    font-family: var(--font-theme);
+
+    button {
+        border: none;
+        border-radius: 999px;
+        padding: 0.6rem;
+        background: color-mix(in oklab, var(--body-background-color) 60%, #000);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        color: var(--text-color);
+    
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+        }
+
+        img {
+            width: 22px;
+            height: 22px;
+            pointer-events: none;
+            filter: brightness(0) invert(0);
+        }
+    }
+
+    #theme-window {
+        position: absolute;
+        bottom: 3.3rem;
+        right: 0;
+        padding: 0.9rem 1rem;
+        border-radius: 14px;
+        background: color-mix(in oklab, var(--body-background-color) 85%, #000);
+        border: 1px solid color-mix(in oklab, var(--accent-color) 35%, #000);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        width: 180px;
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+        pointer-events: none;
+        transition: opacity 0.2 ease, transform 0.2 ease;
+
+        &.open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        p {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        button-container {
+            display: flex;
+            gap: 0.5rem;
+
+            button {
+                flex: 1;
+                padding: 0.4rem 0.5rem;
+                border-radius: 8px;
+                border: 1px solid color-mix(in oklab, var(--accent-color) 35%, #222);
+                background: transparent;
+                color: var(--text-color);
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+            
+                &:hover {
+                    background: color-mix(in oklab, var(--accent-color) 20%, var(--body-background-color));
+                    transform: translateY(-1px);
+                }
+
+                &.active {
+                    background: var(--accent-color);
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    &.stuck-to-footer {
+        position: absolute;
+        bottom: calc(100% + 1rem);
+    }
+}
