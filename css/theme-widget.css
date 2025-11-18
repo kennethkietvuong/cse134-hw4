@@ -12,7 +12,8 @@ theme-widget {
         border: none;
         border-radius: 999px;
         padding: 0.6rem;
-        background-color: var(--settings-cog-color);
+        /* background-color: var(--settings-cog-color); */
+        background-color: color-mix(in oklab, var(--body-background-color) 60%, #000);
         box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         cursor: pointer;
         display: inline-flex;
@@ -40,8 +41,9 @@ theme-widget {
         right: 0;
         padding: 0.9rem 1rem;
         border-radius: 14px;
-        /* background: color-mix(in oklab, var(--body-background-color) 85%, #000); */
-        background: var(--settings-widget-color);
+        width: 220px;
+        background: color-mix(in oklab, var(--body-background-color) 88%, #000);
+        color: var(--text-color);
         border: 1px solid color-mix(in oklab, var(--accent-color) 35%, #000);
         box-shadow: 0 10px 30px rgba(0,0,0,0.35);
         width: 180px;
@@ -59,6 +61,7 @@ theme-widget {
         p {
             margin: 0 0 0.5rem 0;
             font-size: 0.85rem;
+            font-weight: 600;
             opacity: 0.8;
             text-transform: uppercase;
         }
@@ -66,9 +69,10 @@ theme-widget {
         button-container {
             display: flex;
             gap: 0.5rem;
+            flex-wrap: wrap;
 
             button {
-                flex: 1;
+                flex: 1 1 auto;
                 padding: 0.4rem 0.5rem;
                 border-radius: 8px;
                 border: 1px solid color-mix(in oklab, var(--accent-color) 35%, #222);
@@ -95,4 +99,66 @@ theme-widget {
         position: absolute;
         bottom: calc(100% + 1rem);
     }
+
+    custom-theme-panel {
+        margin-top: 0.75rem;
+        padding-top: 0.6rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.15);
+        display: none;
+        display: grid;
+        row-gap: 0.45rem;
+        font-size: 0.85rem;
+
+        p {
+            margin: 0 0 0.25rem 0;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            opacity: 0.75;
+        }
+
+        custom-theme-select {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            row-gap: 0.1rem;
+
+            label {
+                font-size: 0.8rem;
+                opacity: 0.8;
+            }
+
+            select {
+                font: inherit;
+                padding: 0.3rem 0.45rem;
+                border-radius: 8px;
+                border: 1px solid color-mix(in oklab, var(--accent-color) 30%, #222);
+                background: color-mix(in oklab, var(--body-background-color) 92%, #000);
+                color: var(--text-color);
+                cursor: pointer;
+            }
+        }
+
+        button {
+            margin-top: 0.45rem;
+            font-size: 0.85rem;
+            border-radius: 999px;
+            border: 1px solid color-mix(in oklab, var(--accent-color) 40%, #000);
+            background: var(--accent-color);
+            color: #fff;
+            padding: 0.35rem 0.7rem;
+            cursor: pointer;
+            justify-self: end;
+            transition: background-color 0.18s ease, transform 0.1s ease;
+
+            &:hover {
+                background: var(--accent-hover);
+                transform: translateY(-1px);
+            }
+        }
+    }
+}
+
+&.show-custom custom-theme-panel {
+    display: grid;
 }
